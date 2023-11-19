@@ -6,7 +6,7 @@ package cmd
 import (
 	"fmt"
 	"log"
-	"os"
+	//"os"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -16,7 +16,8 @@ import (
 
 var (
 	//TeleToken bot
-	TeleToken = os.Getenv("TELE_TOKEN")
+	//TeleToken = os.Getenv("TELE_TOKEN")
+	TeleToken = "6778810070:AAGHjrc3fbF1XsYXAFv1zLFZe-mK6ZdQX-w"
 )
 
 // kbotCmd represents the kbot command
@@ -32,7 +33,7 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
-		fmt.Println("kbot %s started", appVersion)
+		fmt.Println("kbot started ", appVersion)
 
 		kbot, err := telebot.NewBot(telebot.Settings{
 			URL:    "",
