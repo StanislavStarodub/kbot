@@ -16,14 +16,14 @@ import (
 
 var (
 	//TeleToken bot
-	TeleToken = os.Getenv("TELE_TOKEN")	
+	TeleToken = os.Getenv("TELE_TOKEN")
 )
 
 // kbotCmd represents the kbot command
 var kbotCmd = &cobra.Command{
-	Use:   "kbot",
+	Use:     "kbot",
 	Aliases: []string{"start"},
-	Short: "A brief description of your command",
+	Short:   "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
@@ -33,7 +33,7 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		fmt.Println("kbot started ", appVersion)
-
+		
 		kbot, err := telebot.NewBot(telebot.Settings{
 			URL:    "",
 			Token:  TeleToken,
