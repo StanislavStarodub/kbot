@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: stanislavstarodub
-  tag: "v1.0.5-071dd7b"
+  tag: "v1.0.7-7f5f7d5"
   arch: amd64
 
 secret:
