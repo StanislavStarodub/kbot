@@ -21,6 +21,7 @@ build: format get
 
 image:
 	docker build . -t $(REGISTRY)/$(APP):$(VERSION)-$(TARGETARCH)
+	docker build . -t ghcr.io/$(REGISTRY)/$(APP):$(VERSION)-$(TARGETARCH)
 
 push:
 	docker push $(REGISTRY)/$(APP):$(VERSION)-$(TARGETARCH)
@@ -29,3 +30,4 @@ push:
 clean:
 	rm -rf kbot
 	docker rmi $(REGISTRY)/$(APP):$(VERSION)-$(TARGETARCH)
+	docker rmi ghcr.io/$(REGISTRY)/$(APP):$(VERSION)-$(TARGETARCH)
