@@ -1,6 +1,8 @@
 name: KBOT-CICD
 
-on: push
+on:
+  push:
+    branches: ['develop']
 
 jobs:
   ci:
@@ -21,18 +23,18 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    - name: Build&Push
+      env:
+        APP: "kbot"
+        REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
+      run: make image push
+
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v3
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.MYGITHUB_TOKEN }}
-
-    - name: Build&Push
-      env:
-        APP: "kbot"
-        REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
-      run: make image push
 
   cd:
     name: CD
@@ -55,3 +57,4 @@ jobs:
         git config user.email github-actions@github.com
         git commit -am "update version $VERSION"
         git push
+        docker push ghcr.io/${{ github.repository }}:$(VERSION)-linux-amd64
