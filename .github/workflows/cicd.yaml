@@ -4,10 +4,10 @@ on: push
 
 jobs:
   ci:
-   name: CI
-   runs-on: ubuntu-latest
+    name: CI
+    runs-on: ubuntu-latest
 
-   steps:
+    steps:
     - name: Checkout
       uses: actions/checkout@v4
       with:
@@ -25,3 +25,25 @@ jobs:
         APP: "kbot"
         REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
       run: make image push
+
+  cd:
+    name: CD
+    needs: ci
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - run: echo "VERSION=$(git describe --tags --abbrev=0)-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+    - uses: mikefarah/yq@master
+      with:
+        cmd: yq -i '.image.tag=strenv(VERSION)' helm/values.yaml
+
+    - run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git commit -am "update version $VERSION"
+        git push
