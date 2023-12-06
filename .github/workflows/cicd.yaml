@@ -46,10 +46,8 @@ jobs:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    - run: |
+    - run:
         echo "VERSION=$(git describe --tags --abbrev=0)-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-        path="${{ github.repository }}:$(VERSION)-linux-amd64"
-
 
     - uses: mikefarah/yq@master
       with:
@@ -60,4 +58,4 @@ jobs:
         git config user.email github-actions@github.com
         git commit -am "update version $VERSION"
         git push
-        docker push ghcr.io/$path
+        docker push ghcr.io/stanislavstarodub/kbot:$GITHUB_ENV-linux-amd64
