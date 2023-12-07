@@ -5,8 +5,8 @@
 replicaCount: 1
 image:
   registry: "ghcr.io"
-  repository: "stanislavstarodub/kbot"
-  tag: "v1.0.7-68f32b2"
+  repository: "stanislavstarodub"
+  tag: "v1.0.7-3692421"
   os: linux
   arch: amd64
 secret:
@@ -15,4 +15,3 @@ secret:
   key: "token"
 securityContext:
   privileged: true
-
