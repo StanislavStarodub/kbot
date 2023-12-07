@@ -1,8 +1,7 @@
 name: KBOT-CICD
 
-on:
-  push:
-    #branches: ['develop']
+on: push
+
 
 jobs:
   ci:
