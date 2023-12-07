@@ -4,8 +4,8 @@
 
 replicaCount: 1
 image:
-  repository: stanislavstarodub
-  tag: "v1.0.7-04e4612"
+  repository: stanislavstarodub/kbot
+  tag: "v1.0.7-10a5e81"
   arch: amd64
 secret:
   name: "kbot"
