@@ -1,6 +1,6 @@
 name: KBOT-CICD
 
-on: push
+on: [push]
 
 permissions:
   contents: write
@@ -42,8 +42,6 @@ jobs:
         REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
       run: make image push clean
 
-
-
   cd:
     name: CD
     needs: ci
@@ -55,7 +53,7 @@ jobs:
       with:
         fetch-depth: 0
     - run:
-        echo "VERSION=$(git describe --tags --abbrev=0)-$(git rev-parse --short HEAD)-$OS-$ARCH" >> $GITHUB_ENV
+        echo "VERSION=$(git describe --tags --abbrev=0)-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
     - uses: mikefarah/yq@master
       with:
