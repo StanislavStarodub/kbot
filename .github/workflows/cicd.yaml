@@ -2,6 +2,13 @@ name: KBOT-CICD
 
 on: push
 
+permissions:
+  contents: write
+  packages: write
+
+env:
+  OS: linux
+  ARCH: amd64
 
 jobs:
   ci:
@@ -48,7 +55,7 @@ jobs:
       with:
         fetch-depth: 0
     - run:
-        echo "VERSION=$(git describe --tags --abbrev=0)-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+        echo "VERSION=$(git describe --tags --abbrev=0)-$(git rev-parse --short HEAD)-$OS-$ARCH" >> $GITHUB_ENV
 
     - uses: mikefarah/yq@master
       with:
