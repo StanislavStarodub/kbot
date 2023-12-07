@@ -5,7 +5,7 @@
 replicaCount: 1
 image:
   registry: "ghcr.io"
-  repository: "stanislavstarodub"
+  repository: "StanislavStarodub/kbot"
   tag: "v1.0.7-b6a5da5"
   os: linux
   arch: amd64
