@@ -4,10 +4,8 @@
 
 replicaCount: 1
 image:
-  registry: "ghcr.io"
-  repository: "stanislavstarodub/kbot"
-  tag: "v1.0.7-48ea442"
-  os: linux
+  repository: stanislavstarodub
+  tag: "v1.0.7-04e4612"
   arch: amd64
 secret:
   name: "kbot"
