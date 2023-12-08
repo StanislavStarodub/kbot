@@ -24,13 +24,13 @@ build: format get
 
 image:
 	docker build . -t $(PATHNAME_DOCKER)
-	docker build . -t ghcr.io/$(PATHNAME_GH)
+	#docker build . -t ghcr.io/$(PATHNAME_GH)
 
 push:
 	docker push $(PATHNAME_DOCKER)
-	docker push ghcr.io/$(PATHNAME_GH)
+	#docker push ghcr.io/$(PATHNAME_GH)
 
 clean:
 	rm -rf kbot
 	docker rmi $(PATHNAME_DOCKER)
-	docker rmi ghcr.io/$(PATHNAME_GH)
+	#docker rmi ghcr.io/$(PATHNAME_GH)
